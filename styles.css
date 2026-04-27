@@ -1,0 +1,110 @@
+:root {
+    --bg-color: #121212;
+    --text-color: white;
+    --card-bg: #1e1e1e;
+}
+
+#myBody {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: 0.4s;
+}
+
+#myBody.light-mode {
+    --bg-color: #ffffff;
+    --text-color: #121212;
+    --card-bg: #f0f0f0;
+    --card-color: #121212;
+}
+
+/* Styling the navbar */
+.navbar {
+display: flex;
+justify-content: space-between;  /* Pushes logo to left and links to right */
+align-items: center;
+padding: 15px 50px;
+background-color: #1e1e1e;
+border-bottom: 2px solid gold;
+position: sticky;  /* Keeps it at the top when you scroll */
+top: 0;
+}
+
+.logo {
+color: gold;
+font-size: 1.5rem;
+font-weight: bold;
+}
+
+.nav-links a {
+color: white;
+text-decoration: none;  /* Removes the underline */
+margin-left: 20px;
+transition: 0.3s;
+}
+
+.nav-links a:hover {
+color: gold;
+}
+
+/* The parent container */
+.container {
+display: flex; /* Activates flexbox */
+flex-direction: row; /* Puts items side-by-side */
+justify-content: center; /* Centers them horizontally */
+gap: 20px; /* Add space between the cards */
+flex-wrap: wrap; /* If the screen is small. cards moves to next line */
+padding: 50px;
+}
+
+.card {
+background-color: var(--card-bg);
+color: var(--card-color);
+width: 300px;
+padding: 20px; /* Space inside */
+border: 2px solid gold; /* The outline */
+border-radius: 15px; /* Rounded corners */
+text-align: center;
+box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.profile-img {
+width: 100px;
+height: 100px;
+/*background-color: var(--card-bg);*/
+/*border: 2px solid gold; /* The outline */
+/*border-radius: 50%; /* Makes it a circle */
+margin: 0 auto 15px; /* Centers the circle and adds space below */
+}
+
+button {
+margin-top: 15px; /* Space above the button */
+padding: 10px 20px;
+cursor: pointer;
+border-radius: 5px;
+}
+
+/* This code only runs on screens smaller than 768px */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;  /* Stack logo above links */
+        padding: 20px;
+    }
+
+    .nav-links {
+        margin-top: 15px;
+    }
+
+    .navbar a {
+        margin: 0px 10px;  /* Give links more space to tap with a finger */
+    }
+
+    .container {
+        flex-direction: column;  /* Stack cards vertically */
+        align-items: center;  /* Center the cards */
+        padding: 20px;
+    }
+
+    .card {
+        width: 90%;  /* Make cards wider on small screens */
+    }
+}
