@@ -44,7 +44,7 @@ function displayCards() {
     teamData.forEach(teamData => {
         container.innerHTML += `
             <div class="card">
-                <img src="${teamData.img}" class="profile-img>"
+                <img src="${teamData.img}" class="profile-img">
                 <h2>${teamData.name}</h2>
                 <p>${teamData.role}</p>
                 <button>Profile</button>
