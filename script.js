@@ -29,6 +29,7 @@ function toggleTheme() {
     }
 }
 
+/*
 // 4. Created a Data Array
 const teamData = [
     { name: "Subhiksha G", role: "Lead Developer", img: "Circle.jpg" },
@@ -55,3 +56,36 @@ function displayCards() {
 
 //call the function when the page loads
 displayCards();
+*/
+
+
+// 5. New function to get real data from the internet
+async function fetchTeamData() {
+    try {
+        // 1. Ask the API for 10 users
+        const response = await fetch('https://randomuser.me/api/?results=10');
+        const data = await response.json(); // Convert the "raw" data to a JS object
+        const realUsers = data.results; // This is our new array
+
+        // 2. Find our container
+        const container = document.getElementById("card-container");
+        container.innerHTML = "";
+
+        // 3. Loop through the real data
+        realUsers.forEach(user => {
+            container.innerHTML += `
+                <div class= "card">
+                    <img src="${user.picture.large}" class="profile-img">
+                    <h2>${user.name.first} ${user.name.last}</h2>
+                    <p>${user.location.city}, ${user.location.country}</p>
+                    <button onclick="showGreeting()">Contact</button>
+                </div>
+            `;
+        });
+    } catch (error) {
+        console.log("Oops, something went wrong:",error);
+    }
+}
+
+// Call the new async function
+fetchTeamData();
