@@ -124,7 +124,7 @@ function displayUsers(users) {
 
 // The New Search Function
 function searchUsers() {
-    const searchTerm = document.getElementById("search-bar").value.toLowerCase;
+    const searchTerm = document.getElementById("search-bar").value.toLowerCase();
 
     // Filter the global allUsers array
     const filteredUsers = allUsers.filter(user => {
