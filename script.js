@@ -58,7 +58,7 @@ function displayCards() {
 displayCards();
 */
 
-
+/*
 // 5. New function to get real data from the internet
 async function fetchTeamData() {
     try {
@@ -88,4 +88,52 @@ async function fetchTeamData() {
 }
 
 // Call the new async function
+fetchTeamData();
+*/
+
+
+// 6. Search & Filtering (User Interaction)
+let allUsers = [];  // Global variable to store our data
+async function fetchTeamData() {
+    try {
+        const response = await fetch('https://randomuser.me/api/?results=10');
+        const data = await response.json();
+        allUsers = data.results;  //Save data to our global variable
+        displayUsers(allUsers);  //Call a separate function to show them
+    } catch (error) {
+        console.log("Oops, something went wrong:", error);
+    }
+}
+
+// Separate function just for displaying
+function displayUsers(users) {
+    const container = document.getElementById("card-container");
+    container.innerHTML = "";
+
+    users.forEach(user => {
+        container.innerHTML += `
+            <div class="card">
+                <img src="${user.picture.large}" class="profile-img">
+                <h2>${user.name.first} ${user.name.last}</h2>
+                <p>${user.location.city}, ${user.location.country}</p>
+                <button onclick="showGreeting()">Contact</button>
+            </div> 
+        `;
+    });
+}
+
+// The New Search Function
+function searchUsers() {
+    const searchTerm = document.getElementById("search-bar").value.toLowerCase;
+
+    // Filter the global allUsers array
+    const filteredUsers = allUsers.filter(user => {
+        const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
+        return fullName.includes(searchTerm);
+    });
+
+    // Display only the matching users
+    displayUsers(filteredUsers);
+}
+
 fetchTeamData();
