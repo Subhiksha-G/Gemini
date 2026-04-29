@@ -153,7 +153,19 @@ async function fetchTeamData() {
 
         displayUsers(allUsers);
     } catch (error) {
-        loader.innerHTML = "Failed to load team data";
+        // 1. Remove the spinner styling so the text doesn't spin
+        loader.classList.remove("spinner");
+
+        // 2. Set a clear error message
+        loader.innerHTML = "⚠️ Failed to load team data. Please check your internet connection.";
+
+        // 3. Make sure the text is visible and centered
+        loader.style.color = "#ff4d4d";
+        loader.style.textAlign = "center";
+        loader.style.width = "100%";
+        loader.style.fontSize = "1.2rem";
+        loader.style.marginTop = "20px";
+
         console.log("Error", error);
     }
 }
