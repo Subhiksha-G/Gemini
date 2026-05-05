@@ -21,11 +21,16 @@ function toggleTheme() {
         */
     // 3. Toggle a class on the body (Industry way)
     element.classList.toggle("light-mode"); //Toggle a class called 'light-mode'
+
     //Change button text based on the class
     if(element.classList.contains("light-mode")) {
         btn.innerHTML = "Switch to Dark";
-    }else {
+        // Save the choice
+        localStorage.setItem("theme", "light");
+    } else {
         btn.innerHTML = "Switch to Light";
+        // Save the choice
+        localStorage.setItem("theme", "dark");
     }
 }
 
@@ -173,6 +178,16 @@ async function fetchTeamData() {
 function displayUsers(users) {
     const container = document.getElementById("card-container");
     container.innerHTML = "";
+
+    if (users.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; width: 100%; margin-top: 50px;">
+                <h3 style="color: gold;">No team members match your search</h3>
+                <p>Try a different name or clear the search bar.</p>
+            </div>
+        `;
+        return;
+    }
 
     users.forEach(user => {
         container.innerHTML += `
