@@ -1,0 +1,42 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    color: #333;
+}
+
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(/Circle.jpg);
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border-top: 5px solid gold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #333;
+    color: gold;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
