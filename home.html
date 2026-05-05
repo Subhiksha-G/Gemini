@@ -21,5 +21,18 @@
             </div>
         </div>
     </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form" onsubmit="handleContact(event)">
+            <input type="text" id="name" placeholder="Your name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="view-btn">Send Message</button>
+        </form>
+        <div id="form-feedback" style="display: none; margin-top: 20px; color: green; font-weight: bold;">
+            Thanks for reaching out! I'll get back to you soon. 
+        </div>
+    </section>
 </body>
+<script src="/home-script.js"></script>
 </html>
