@@ -3,45 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <title>Subhiksha | Portfolio</title>
+    <link rel="stylesheet" href="/home-styles.css" />
+    <link rel="icon" href="bg-home.jpg" type="image/x-icon" />
   </head>
-  <body id="myBody">
-    <nav class="navbar">
-        <div class="logo">SUBHIKSHA.DEV</div>
-        <input type="text" id="search-bar" placeholder="Search team members..." onkeyup="searchUsers()">
-        <div class="nav-links">
-          <button id="theme-btn" onclick="toggleTheme()">Switch to Light</button>
-            <a href="/home.html">HOME</a>  <!-- NEW LINK -->
-            <a href="https://github.com/Subhiksha-G">GitHub</a>
-            <a href="https://www.linkedin.com/in/subhiksha-g">LinkedIn</a>
-        </div>
+  <body>
+    <nav class="navBar">
+      <div class="logo">SUBHIKSHA G</div>
+      <div class="nav-links">
+        <a href="/projects.html">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
-    <div class="container" id="card-container">
-      <!-- <div class="card">
-        <img src="/Circle.jpg" alt="" class="profile-img" />
-        <h2>Subhiksha G</h2>
-        <p>Lead Developer</p>
-        <button onclick="showGreeting()">Profile</button>
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Hi, I'm Subhiksha G</h1>
+        <p class="typing-text" id="typewriter"></p>
+        <a href="/projects.html" class="view-btn">Explore My Work</a>
       </div>
-
-      <div class="card">
-        <img src="/Circle.jpg" alt="" class="profile-img" />
-        <h2>Project B</h2>
-        <p>UI Designer</p>
-        <button onclick="showGreeting()">Profile</button>
+      <div class="scroll-indicator">
+        <span></span>
       </div>
-
-      <div class="card">
-        <img src="/Circle.jpg" alt="" class="profile-img" />
-        <h2>Project C</h2>
-        <p>Backend Developer</p>
-        <button onclick="showGreeting()">Profile</button>
-      </div> -->
-
-      <div id="loader" class="spinner"></div>
-    </div>
+    </header>
+    <section class="project-section">
+      <h2>My Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Team Directory App</h3>
+          <p>
+            A real-time user directory fetching data from a live API with search
+            and dark mode functionality.
+          </p>
+          <a href="projects.html" class="view-btn">View Project</a>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <form id="contact-form" onsubmit="handleContact(event)">
+        <input type="text" id="name" placeholder="Your name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea
+          id="message"
+          placeholder="Your Message"
+          rows="5"
+          required
+        ></textarea>
+        <button type="submit" class="view-btn">Send Message</button>
+      </form>
+      <div
+        id="form-feedback"
+        style="display: none; margin-top: 20px; color: green; font-weight: bold"
+      >
+        Thanks for reaching out! I'll get back to you soon.
+      </div>
+    </section>
   </body>
-  <script src="/script.js"></script>
+  <script src="/home-script.js"></script>
 </html>
