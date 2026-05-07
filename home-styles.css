@@ -47,6 +47,18 @@ animation: fadeInUp 1.5s ease-out;
     60% { transform: translateX(-50%) translateY(-5px) rotate(-45deg); }
 }
 
+#typewriter {
+    font-weight: bold;
+    color: gold;
+    border-right: 3px solid gold;
+    padding-right: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
