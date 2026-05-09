@@ -1,14 +1,16 @@
 function showGreeting() {
-    alert("Hello! You are viewing Subhiksha's professional profile and my favourite quote is \"Think Bigger and Gain Bigger\"")
+  alert(
+    'Hello! You are viewing Subhiksha\'s professional profile and my favourite quote is "Think Bigger and Gain Bigger"',
+  );
 }
 
 function toggleTheme() {
-    // 1. Grab the body element
-    var element = document.getElementById("myBody");
-    var btn = document.getElementById("theme-btn");
+  // 1. Grab the body element
+  var element = document.getElementById("myBody");
+  var btn = document.getElementById("theme-btn");
 
-    // 2. Toggle a CSS class or change style directly
-    /*
+  // 2. Toggle a CSS class or change style directly
+  /*
     if(element.style.backgroundColor === "white") {
         element.style.backgroundColor = "#121212";
         element.style.color = "white";
@@ -19,19 +21,19 @@ function toggleTheme() {
         btn.innerHTML = "Switch to Dark";
     }
         */
-    // 3. Toggle a class on the body (Industry way)
-    element.classList.toggle("light-mode"); //Toggle a class called 'light-mode'
+  // 3. Toggle a class on the body (Industry way)
+  element.classList.toggle("light-mode"); //Toggle a class called 'light-mode'
 
-    //Change button text based on the class
-    if(element.classList.contains("light-mode")) {
-        btn.innerHTML = "Switch to Dark";
-        // Save the choice
-        localStorage.setItem("theme", "light");
-    } else {
-        btn.innerHTML = "Switch to Light";
-        // Save the choice
-        localStorage.setItem("theme", "dark");
-    }
+  //Change button text based on the class
+  if (element.classList.contains("light-mode")) {
+    btn.innerHTML = "Switch to Dark";
+    // Save the choice
+    localStorage.setItem("theme", "light");
+  } else {
+    btn.innerHTML = "Switch to Light";
+    // Save the choice
+    localStorage.setItem("theme", "dark");
+  }
 }
 
 /*
@@ -145,71 +147,107 @@ fetchTeamData();
 */
 
 // 7. With spin loader, Search & Filtering (User Interaction)
-let allUsers =[];
+let allUsers = [];
 async function fetchTeamData() {
-    const loader = document.getElementById("loader");
-    try {
-        const response = await fetch('https://randomuser.me/api/?results=10');
-        const data = await response.json();
-        allUsers = data.results;
+  const loader = document.getElementById("loader");
+  try {
+    const response = await fetch("https://randomuser.me/api/?results=10");
+    const data = await response.json();
+    allUsers = data.results;
 
-        // Hide the loader before dispplaying cards
-        loader.style.display = "none";
+    // Hide the loader before dispplaying cards
+    loader.style.display = "none";
 
-        displayUsers(allUsers);
-    } catch (error) {
-        // 1. Remove the spinner styling so the text doesn't spin
-        loader.classList.remove("spinner");
+    displayUsers(allUsers);
+  } catch (error) {
+    // 1. Remove the spinner styling so the text doesn't spin
+    loader.classList.remove("spinner");
 
-        // 2. Set a clear error message
-        loader.innerHTML = "⚠️ Failed to load team data. Please check your internet connection.";
+    // 2. Set a clear error message
+    loader.innerHTML =
+      "⚠️ Failed to load team data. Please check your internet connection.";
 
-        // 3. Make sure the text is visible and centered
-        loader.style.color = "#ff4d4d";
-        loader.style.textAlign = "center";
-        loader.style.width = "100%";
-        loader.style.fontSize = "1.2rem";
-        loader.style.marginTop = "20px";
+    // 3. Make sure the text is visible and centered
+    loader.style.color = "#ff4d4d";
+    loader.style.textAlign = "center";
+    loader.style.width = "100%";
+    loader.style.fontSize = "1.2rem";
+    loader.style.marginTop = "20px";
 
-        console.log("Error", error);
-    }
+    console.log("Error", error);
+  }
 }
 
 function displayUsers(users) {
-    const container = document.getElementById("card-container");
-    container.innerHTML = "";
+  const container = document.getElementById("card-container");
+  container.innerHTML = "";
 
-    if (users.length === 0) {
-        container.innerHTML = `
+  if (users.length === 0) {
+    container.innerHTML = `
             <div style="text-align: center; width: 100%; margin-top: 50px;">
                 <h3 style="color: gold;">No team members match your search</h3>
                 <p>Try a different name or clear the search bar.</p>
             </div>
         `;
-        return;
-    }
+    return;
+  }
 
-    users.forEach(user => {
-        container.innerHTML += `
+  users.forEach((user) => {
+    const isLiked = localStorage.getItem(user.login.uuid) === "true";
+    const heartColor = isLiked ? "red" : "gray";
+
+    container.innerHTML += `
             <div class="card">
                 <img src="${user.picture.large}" class="profile-img">
                 <h2>${user.name.first} ${user.name.last}</h2>
                 <p>${user.location.city}, ${user.location.country}</p>
+
+                <button id="like-${user.login.uuid}" 
+                onclick="toggleLike('${user.login.uuid}')" 
+                style="color: ${heartColor}; font-size: 1.5rem; background: none; border: none; cursor: pointer;">
+                    💚
+                </button>
                 <button onclick="showGreeting()">Contact</button>
             </div>
         `;
-    });
+  });
 }
 
 function searchUsers() {
-    const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+  const searchTerm = document.getElementById("search-bar").value.toLowerCase();
 
-    const filteredUsers = allUsers.filter(user => {
-        const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
-        return fullName.includes(searchTerm);
+  const filteredUsers = allUsers.filter((user) => {
+    const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
+    return fullName.includes(searchTerm);
+  });
+
+  displayUsers(filteredUsers);
+}
+
+function toggleLike(userId) {
+  const btn = document.getElementById(`like-${userId}`);
+  const currentlyLiked = localStorage.getItem(userId) === "true";
+
+  if (currentlyLiked) {
+    localStorage.removeItem(userId);
+    btn.style.color = "gray";
+  } else {
+    localStorage.setItem(userId, "true");
+    btn.style.color = "red";
+  }
+}
+
+function filterFavourites() {
+    const likedUsers = allUsers.filter(user => {
+        return localStorage.getItem(userlogin.uuid) === "true";
     });
 
-    displayUsers(filteredUsers);
+    if (likedUsers.length === 0) {
+        const container = document.getElementById("card-container");
+        container.innerHTML = "<h3 style='color: gold; text-align: center; width: 100%;'>You haven't liked anyone yet!</h3>";
+    } else {
+        displayUsers(likedUsers);
+    }
 }
 
 fetchTeamData();
