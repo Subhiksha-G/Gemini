@@ -205,7 +205,7 @@ function displayUsers(users) {
                 <button id="like-${user.login.uuid}" 
                 onclick="toggleLike('${user.login.uuid}')" 
                 style="color: ${heartColor}; font-size: 1.5rem; background: none; border: none; cursor: pointer;">
-                    💚
+                ❤️
                 </button>
                 <button onclick="showGreeting()">Contact</button>
             </div>
