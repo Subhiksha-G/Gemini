@@ -239,7 +239,7 @@ function toggleLike(userId) {
 
 function filterFavourites() {
     const likedUsers = allUsers.filter(user => {
-        return localStorage.getItem(userlogin.uuid) === "true";
+        return localStorage.getItem(user.login.uuid) === "true";
     });
 
     if (likedUsers.length === 0) {
