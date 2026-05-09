@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f4f4f9;
@@ -72,6 +76,14 @@ animation: fadeInUp 1.5s ease-out;
     border-radius: 10px;
     border-top: 5px solid gold;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* This prepares the card for animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
 }
 
 .view-btn {
