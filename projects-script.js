@@ -238,24 +238,26 @@ function toggleLike(userId) {
 }
 
 function filterFavourites() {
-    const likedUsers = allUsers.filter(user => {
-        return localStorage.getItem(user.login.uuid) === "true";
-    });
+  const likedUsers = allUsers.filter((user) => {
+    return localStorage.getItem(user.login.uuid) === "true";
+  });
 
-    if (likedUsers.length === 0) {
-        const container = document.getElementById("card-container");
-        container.innerHTML = "<h3 style='color: gold; text-align: center; width: 100%;'>You haven't liked anyone yet!</h3>";
-    } else {
-        displayUsers(likedUsers);
-    }
+  if (likedUsers.length === 0) {
+    const container = document.getElementById("card-container");
+    container.innerHTML =
+      "<h3 style='color: gold; text-align: center; width: 100%;'>You haven't liked anyone yet!</h3>";
+  } else {
+    displayUsers(likedUsers);
+  }
 }
 
 function openModal(userId) {
-    const modal = document.getElementById("userModal");
-    const detailsContainer = document.getElementById("modal-details");
+  const modal = document.getElementById("userModal");
+  const detailsContainer = document.getElementById("modal-details");
 
-    const user = allUsers.filter(u => u.login.uuid === userId);
+  const user = allUsers.find((u) => u.login.uuid === userId);
 
+  if (user) {
     detailsContainer.innerHTML = `
         <img src="${user.picture.large}" class="profile-img" style="width: 150px; height: 150px">
         <h2>${user.name.first} ${user.name.last}</h2>
@@ -263,12 +265,12 @@ function openModal(userId) {
         <p><strong>Phone: </strong>${user.phone}</p>
         <p><strong>Location: </strong>${user.location.street.number} ${user.location.street.name}, ${user.location.city}</p>
     `;
-
     modal.style.display = "block";
+  }
 }
 
 function closeModal() {
-    document.getElementById("userModal").style.display = "none";
+  document.getElementById("userModal").style.display = "none";
 }
 
 fetchTeamData();
