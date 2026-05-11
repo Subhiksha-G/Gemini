@@ -207,7 +207,7 @@ function displayUsers(users) {
                 style="color: ${heartColor}; font-size: 1.5rem; background: none; border: none; cursor: pointer;">
                 ❤️
                 </button>
-                <button onclick="showGreeting()">Contact</button>
+                <button onclick="openModal('${user.login.uuid}')">View Details</button>
             </div>
         `;
   });
@@ -248,6 +248,27 @@ function filterFavourites() {
     } else {
         displayUsers(likedUsers);
     }
+}
+
+function openModal(userId) {
+    const modal = document.getElementById("userModal");
+    const detailsContainer = document.getElementById("modal-details");
+
+    const user = allUsers.filter(u => u.login.uuid === userId);
+
+    detailsContainer.innerHTML = `
+        <img src="${user.picture.large}" class="profile-img" style="width: 150px; height: 150px">
+        <h2>${user.name.first} ${user.name.last}</h2>
+        <p><strong>Email: </strong>${user.email}</p>
+        <p><strong>Phone: </strong>${user.phone}</p>
+        <p><strong>Location: </strong>${user.location.street.number} ${user.location.street.name}, ${user.location.city}</p>
+    `;
+
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("userModal").style.display = "none";
 }
 
 fetchTeamData();
