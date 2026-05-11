@@ -206,9 +206,10 @@ function createUserCard(user) {
             <p>${user.location.city}, ${user.location.country}</p>
             <div class="card-actions">
                 <button id="like-${user.login.uuid}" 
-                onclick="toggleLike('${user.login.uuid}')" 
-                style="color: ${heartColor}; font-size: 1.5rem; background: none; border: none; cursor: pointer;">
-                ❤️
+                    class= "like-btn"
+                    onclick="toggleLike('${user.login.uuid}')" 
+                    style="color: ${heartColor};">
+                    ❤️
                 </button>
                 <button onclick="openModal('${user.login.uuid}')">Profile</button>
             </div>
