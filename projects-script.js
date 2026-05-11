@@ -192,25 +192,28 @@ function displayUsers(users) {
     return;
   }
 
-  users.forEach((user) => {
+  container.innerHTML = users.map((user) => createUserCard(user)).join("");
+}
+
+function createUserCard(user) {
     const isLiked = localStorage.getItem(user.login.uuid) === "true";
     const heartColor = isLiked ? "red" : "gray";
 
-    container.innerHTML += `
-            <div class="card">
-                <img src="${user.picture.large}" class="profile-img">
-                <h2>${user.name.first} ${user.name.last}</h2>
-                <p>${user.location.city}, ${user.location.country}</p>
-
+    return `
+        <div class="card">
+            <img src="${user.picture.large}" class="profile-img">
+            <h2>${user.name.first} ${user.name.last}</h2>
+            <p>${user.location.city}, ${user.location.country}</p>
+            <div class="card-actions">
                 <button id="like-${user.login.uuid}" 
                 onclick="toggleLike('${user.login.uuid}')" 
                 style="color: ${heartColor}; font-size: 1.5rem; background: none; border: none; cursor: pointer;">
                 ❤️
                 </button>
-                <button onclick="openModal('${user.login.uuid}')">View Details</button>
+                <button onclick="openModal('${user.login.uuid}')">Profile</button>
             </div>
-        `;
-  });
+        </div>
+    `;
 }
 
 function searchUsers() {
