@@ -277,4 +277,20 @@ function closeModal() {
   document.getElementById("userModal").style.display = "none";
 }
 
+function sortUsers() {
+    const sortValue = document.getElementById("sort-select").value;
+
+    let sortedList = [...allUsers];
+
+    if (sortValue === "name-asc") {
+        sortedList.sort((a, b) => a.name.first.localeCompare(b.name.first));
+    } else if (sortValue === "name-desc") {
+        sortedList.sort((a, b) => b.name.first.localeCompare(a.name.first));
+    } else if (sortValue === "city") {
+        sortedList.sort((a, b) => a.location.city.localeCompare(b.location.city));
+    }
+
+    displayUsers(sortedList);
+}
+
 fetchTeamData();
