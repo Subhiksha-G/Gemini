@@ -201,7 +201,7 @@ function createUserCard(user) {
 
     return `
         <div class="card">
-            <img src="${user.picture.large}" class="profile-img">
+            <img src="${user.picture.large}" class="profile-img" loading="lazy">
             <h2>${user.name.first} ${user.name.last}</h2>
             <p>${user.location.city}, ${user.location.country}</p>
             <div class="card-actions">
