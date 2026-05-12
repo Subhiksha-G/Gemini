@@ -1,0 +1,6 @@
+{
+    "routes": [
+        { "handle": "filename" },
+        { "src": "/.*", "status": 404, "dest": "/404.html" }
+    ]
+}
