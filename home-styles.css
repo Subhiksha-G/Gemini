@@ -68,6 +68,18 @@ animation: fadeInUp 1.5s ease-out;
     text-align: center;
     background-color: #ffffff;
 }
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .skills-container {
     display: flex;
     justify-content: center;
