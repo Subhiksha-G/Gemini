@@ -9,6 +9,50 @@ body {
     color: #333;
 }
 
+.navBar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 2000;
+    box-sizing: border-box;
+}
+
+.logo a {
+    text-decoration: none;
+    color: gold;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: gold;
+}
+
 .hero {
     position: relative;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url(/bg-home.jpg);
@@ -157,6 +201,36 @@ animation: fadeInUp 1.5s ease-out;
     padding: 12px;
     border-radius: 5px;
     font-family: inherit;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle-label {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav-toggle-label span, .nav-toggle-label span::before, .nav-toggle-label span::after {
+        display: block;
+        background: gold;
+        height: 2px;
+        width: 2rem;
+        position: relative;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #1e1e1e;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(0px at top right);
+        transition: clip-path 0.5s ease-in-out;
+    }
+
+    .nav-toggle:checked ~ .nav-links {
+        clip-path: circle(150% at top right);
+    }
 }
 
 @media (max-width: 600px) {

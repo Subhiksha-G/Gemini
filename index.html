@@ -18,11 +18,17 @@
   </head>
   <body>
     <nav class="navBar">
-      <div class="logo">SUBHIKSHA G</div>
-      <div class="nav-links">
-        <a href="#myprojects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
+      <div class="logo"><a href="/index.html">SUBHIKSHA G</a></div>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#myprojects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="theme-btn" class="theme-pill" onclick="toggleTheme()">Light Mode🌞</button></li>
+      </ul>
     </nav>
     <header class="hero">
       <div class="hero-content">
